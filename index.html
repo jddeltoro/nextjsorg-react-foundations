@@ -14,16 +14,31 @@
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script type="text/jsx">
         const app = document.getElementById('app');
+
         function Header({title}) {
             console.log(title);
             return (<h1>{title ? title : 'Default title'}</h1>)
         };
+
         function HomePage() {
+            const [likes, setLikes] = React.useState(0);
+            const names = ['Ada Lovelace', 'Grace Hopper', 'Margaret Hamilton'];
+            function handleClick() {
+                console.log('Button clicked');
+                setLikes(likes +1);
+            }
+
             return (
                 <div>
                     <Header title="React"/>
                     <Header title="A new title" />
                     <p>Welcome to React Foundations Org Training</p>
+                    <ul>
+                        {names.map((name) => (
+                            <li key={name}>{name}</li>
+                        ))}
+                    </ul>
+                    <button onClick={handleClick}>Like({likes})</button>
                 </div>
             )
         }
